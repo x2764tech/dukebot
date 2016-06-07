@@ -22,8 +22,12 @@ menu_url = 'https://raw.githubusercontent.com/duke-studios/cafeteria-data/master
 
 # Hi world!
 @slack.command('lunch', token=os.environ.get("SLACK_TOKEN"),
-               team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'])
-def lunch(**kwargs):
+               team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'],
+               meal='lunch')
+@slack.command('breakfast', token=os.environ.get("SLACK_TOKEN"),
+               team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'],
+               meal='breakfast')
+def meal_select(**kwargs):
 
     prefixes = [
         "I think you should try the",
@@ -53,7 +57,7 @@ def lunch(**kwargs):
 
     while not item_diet_safe:
 
-        item = random.choice(data['lunch']['items'])
+        item = random.choice(data[kwargs.get('meal')]['items'])
 
         if restriction:
             if restriction in item['flags']:
