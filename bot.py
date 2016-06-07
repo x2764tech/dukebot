@@ -21,10 +21,10 @@ menu_url = 'https://raw.githubusercontent.com/duke-studios/cafeteria-data/master
 
 
 # Hi world!
-@slack.command('lunch', token=os.environ.get("SLACK_TOKEN"),
+@slack.command('lunch', token=os.environ.get("SLACK_TOKEN_LUNCH"),
                team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'],
                meal='lunch')
-@slack.command('breakfast', token=os.environ.get("SLACK_TOKEN"),
+@slack.command('breakfast', token=os.environ.get("SLACK_TOKEN_BREAKFAST"),
                team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'],
                meal='breakfast')
 def meal_select(**kwargs):
