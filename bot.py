@@ -27,19 +27,44 @@ def lunch(**kwargs):
 
     prefixes = [
         "I think you should try the",
+        "I think you should have the",
+        "You want to try the",
         "You want to have the",
-        "Why not try the",
+        "Try the",
+        "Have the",
         "I recommend the",
         "You want the",
         "My suggestion is the"
     ]
 
+    suffixes = [
+        "",
+        " Delicious.",
+        " Om nom nom!",
+        " Bring me one as well!"
+    ]
+
     response = urllib.urlopen(menu_url)
     data = json.loads(response.read())
 
-    item = random.choice(data['lunch']['items'])
+    restriction = kwargs.get('text')
+
+    item_diet_safe = False
+
+    while not item_diet_safe:
+
+        item = random.choice(data['lunch']['items'])
+
+        if restriction:
+            if restriction in item['flags']:
+                item_diet_safe = True
+        else:
+            item_diet_safe = True
+
     prefix = random.choice(prefixes)
-    text = "%s %s (%s)." % (prefix, item['name'], item['price'])
+    suffix = random.choice(suffixes)
+
+    text = "%s %s (%s).%s" % (prefix, item['name'], item['price'], suffix)
 
     return slack.response(
         text=text,
