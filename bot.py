@@ -17,7 +17,7 @@ app.add_url_rule('/', view_func=slack.dispatch)
 
 # Configuration!
 # Where can we find the menu?
-menu_url = 'https://raw.githubusercontent.com/duke-studios/cafeteria-data/master/opening-hours.json'
+menu_url = 'https://raw.githubusercontent.com/duke-studios/cafeteria-data/master/menu.json'
 
 
 # Hi world!
