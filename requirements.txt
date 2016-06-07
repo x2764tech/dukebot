@@ -1,1 +1,1 @@
-bottle
+flask-slack
