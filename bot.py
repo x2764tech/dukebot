@@ -21,7 +21,8 @@ menu_url = 'https://raw.githubusercontent.com/duke-studios/cafeteria-data/master
 
 
 # Hi world!
-@slack.command('lunch', token=os.environ.get("SLACK_TOKEN"), methods=['POST'])
+@slack.command('lunch', token=os.environ.get("SLACK_TOKEN"),
+               team_id=os.environ.get("SLACK_TEAM_ID"), methods=['POST'])
 def lunch(**kwargs):
 
     prefixes = [
