@@ -55,16 +55,12 @@ def meal_select(**kwargs):
 
     item_diet_safe = False
 
-    while not item_diet_safe:
-
-        item = random.choice(data[kwargs.get('meal')]['items'])
-
-        if restriction:
-            if restriction in item['flags']:
-                item_diet_safe = True
-        else:
-            item_diet_safe = True
-
+    items = data[kwargs.get('meal')]['items']
+    
+    if restriction:
+      items = [item from items if restriction in item['flags']]
+    
+    item = random.choice(items) 
     prefix = random.choice(prefixes)
     suffix = random.choice(suffixes)
 
