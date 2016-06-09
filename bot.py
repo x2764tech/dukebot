@@ -58,7 +58,7 @@ def meal_select(**kwargs):
     items = data[kwargs.get('meal')]['items']
     
     if restriction:
-      items = [item from items if restriction in item['flags']]
+      items = [item for item in items if restriction in item['flags']]
     
     item = random.choice(items) 
     prefix = random.choice(prefixes)
